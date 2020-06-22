@@ -10,18 +10,8 @@ describe('testing auth', function(){
         clientHelpers.getAllClientsRequest(cy)
      })
 
-/*
-     it.only('Edit a client', function(){
-      clientHelpers.getAllClientsRequest(cy)
-   })
-*/
-
-
-
      it('Create a client and delete it', function(){
       clientHelpers.createClientRequestAndDelete(cy)
    })
-
-
 
 })

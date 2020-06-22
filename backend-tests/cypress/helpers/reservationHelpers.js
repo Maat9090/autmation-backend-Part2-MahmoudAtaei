@@ -1,6 +1,28 @@
+const faker = require('faker')
 
 const ENDPOINT_GET_RESERVATIONS = 'http://localhost:3000/api/reservations'
+const ENDPOINT_POST_RESERVATION = 'http://localhost:3000/api/reservation/new'
 
+
+
+
+//Skapar faker payload 
+function createRandomreservationtPayload(){
+    
+      const fakerClient = faker.random.number(2) 
+       const fakerStartDate = faker.date.recent()
+       const fakerEndDate = faker.date.future()
+
+
+    const payload = {
+        "client":fakerClient,
+        "room":1,
+        "bill":1,
+        "start":fakerStartDate,
+        "end":fakerEndDate
+    }    
+    return payload
+}
 
 
 
@@ -23,55 +45,36 @@ function getAllReservationsRequest(cy){
 
 
 
-/*
-function createReservationRequest(cy){
+function createReservationReques(cy){
     cy.authenticateSession().then((response =>{
-        let fakeReservationsPayload = createRandomClientPayload() 
+        let fakeReservationPayload = createRandomreservationtPayload() 
         
-        // post request to create a reservation
+       
         cy.request({
             method: "POST",
-            url: ENDPOINT_POST_CLIENT,
+            url: ENDPOINT_POST_RESERVATION,
             headers:{
                 'X-User-Auth': JSON.stringify(Cypress.env().loginToken),
                 'Content-Type': 'application/json'
             },
-            body:fakeClientPayload 
+            body:fakeReservationPayload                                                                                                                                                                                                                                       
         }).then((response =>{               
            const responseAsString = JSON.stringify(response)
-           expect(responseAsString).to.have.string(fakeClientPayload.name)
+           expect(responseAsString).to.have.string(fakeReservationPayload.client)  
+           cy.log(response.body.id) 
+
         }))
 
-        getRequestAllClientsWithAssertion(cy,fakeClientPayload.name, fakeClientPayload.email, fakeClientPayload.telephone)
     }))
-}
-*/
 
+
+}
 
 
 
 module.exports = {
     getAllReservationsRequest, 
-    //createClientRequest, 
-    //getAllClientsRequest,
-    //createClientRequestAndDelete
+    createReservationReques,
+    createRandomreservationtPayload
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

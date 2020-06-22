@@ -4,6 +4,7 @@ const ENDPOINT_GET_CLIENTS = 'http://localhost:3000/api/clients'
 const ENDPOINT_POST_CLIENT = 'http://localhost:3000/api/client/new'
 const ENDPOINT_GET_CLIENT = 'http://localhost:3000/api/client/'
 
+//Skapar faker payload firstNamn ,...
 function createRandomClientPayload(){
     const fakeName = faker.name.firstName()
     const fakeEmail = faker.internet.email()
@@ -142,5 +143,5 @@ module.exports = {
     createRandomClientPayload, 
     createClientRequest, 
     getAllClientsRequest,
-    createClientRequestAndDelete
+    createClientRequestAndDelete 
 }
