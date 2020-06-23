@@ -47,6 +47,8 @@ function createRoomtReques(cy){
         }).then((response =>{               
            const responseAsString = JSON.stringify(response)
            expect(responseAsString).to.have.string(fakeRoomPayload.price)  
+           cy.log(response.body.id) 
+           cy.log(response.body)
 
           // cy.log(response.body[response.body.length -1].id)
           // cy.log(response.body.length) 
@@ -123,6 +125,7 @@ function EditRequestAfterGet(cy){
 
 //**********Create a room and edit it ********************
 function createRoomRequestAndEdit(cy){
+
     cy.authenticateSession().then((response =>{
         let fakeRoomPayload = createRandomRoomtPayload() 
         
@@ -136,14 +139,16 @@ function createRoomRequestAndEdit(cy){
             },
             body:fakeRoomPayload                                                                                                                                                                                                                                       
         }).then((response =>{               
+
+  /*           
            const responseAsString = JSON.stringify(response)
-           expect(responseAsString).to.have.string(fakeRoomPayload.category)
+           expect(responseAsString).to.have.string(fakeRoomPayload.category)*/
        // }))
        // EditRequestAfterGet(cy)
-     //cy.log("Test")
-
-       let lastId = response.body[response.body.length -1].id
-        
+      cy.log(response.body.id) 
+      cy.log(response.body)
+     /*  let lastId = response.body[response.body.length -1].id
+       
        cy.request({
         method: "PUT",
         url: ENDPOINT_PUT_ROOM+ lastId,
@@ -158,8 +163,8 @@ function createRoomRequestAndEdit(cy){
     }).then((response =>{               
         const responseAsString = JSON.stringify(response.body)
         cy.log(responseAsString)
-      //  expect(responseAsString).to.have.string('true')
-     }))
+      //  expect(responseAsString).to.have.string('true')   
+     }))*/
         }))
           }))
 }
