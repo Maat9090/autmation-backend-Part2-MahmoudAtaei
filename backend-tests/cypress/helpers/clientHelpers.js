@@ -119,8 +119,11 @@ function createClientRequest(cy){
 
 
 function EditCRequestAfterGet(cy){
-    let fakeClientPayload = createRandomClientPayload() 
-    // GET request to fetch all client
+  //  let fakeClientPayload = createRandomClientPayload() 
+   
+  
+  
+  // GET request to fetch all client
     cy.authenticateSession().then((response =>{
         cy.request({
             method: "GET",
@@ -131,14 +134,26 @@ function EditCRequestAfterGet(cy){
             },
    
         }).then((response =>{
-        // const responseAsString = JSON.stringify(response)
-        //   cy.log(responseAsString)
+     const responseAsString = JSON.stringify(response)
+          cy.log(responseAsString)
         
-       // let lastId = response.body[response.body.length -1].id
-       //   cy.log(lastId)
+     
+     }))
+        EditCRequestAfterGet2(cy)
+    }))
+}
+
+
+
+ function EditCRequestAfterGet2(cy){
+            let fakeClientPayload = createRandomClientPayload() 
+          //  let lastId = response.body[response.body.length -1].id  
+          let lastId =1 
+       
+      // cy.log(lastId)
         cy.request({
         method: "PUT",
-        url: ENDPOINT_PUT_CLIENT,
+        url: ENDPOINT_PUT_CLIENT+ lastId,
         headers:{
             'X-User-Auth': JSON.stringify(Cypress.env().loginToken),
             'Content-Type': 'application/json'
@@ -154,8 +169,8 @@ function EditCRequestAfterGet(cy){
      }))
 
       
-    }))
-}))
+ // }))
+//}))
 }
 
 
@@ -268,5 +283,6 @@ module.exports = {
     getAllClientsRequest,
     EditCRequestAfterGet,
     createClientRequestAndEdit2,
+    EditCRequestAfterGet2,
     createClientRequestAndDelete 
 }
