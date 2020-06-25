@@ -7,9 +7,9 @@ describe('testing auth', function(){
     })
 
 
-   it.only('Create a client and edit it', function(){
+  /* it.only('Create a client and edit it', function(){
       clientHelpers.EditCRequestAfterGet(cy)
-   })
+   })*/
 
 
 
